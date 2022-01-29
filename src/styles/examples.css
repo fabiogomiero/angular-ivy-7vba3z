@@ -1,0 +1,13 @@
+.dashboard .dashboard-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard .dashboard-header,
+.example .example-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1em;
+}

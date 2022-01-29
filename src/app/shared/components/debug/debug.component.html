@@ -1,0 +1,9 @@
+<div class="debug" [ngClass]="debugHide">
+  <div class="debug-header" (click)="toggleShow()">
+    <h3>Debug</h3>
+    <p><i class="arrow"></i></p>
+  </div>
+  <div class="debug-content">
+    <pre>{{ value | json }}</pre>
+  </div>
+</div>

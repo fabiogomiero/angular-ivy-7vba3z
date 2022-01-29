@@ -1,0 +1,57 @@
+<section class="example">
+  <div class="example-header">
+    <h2>Reactive Form: Form Array</h2>
+    <back
+      label="Esempi"
+      [link]="['../', 'dashboard']"
+      title="Vai lista degli esempi"
+    ></back>
+  </div>
+  <div class="example-content">
+    <form [formGroup]="form">
+      <label for="first-name">First Name: </label>
+      <input
+        id="first-name"
+        type="text"
+        formControlName="name"
+        class="form-control"
+      />
+
+      <div formArrayName="dateIntervals">
+        <h2>Date intervals</h2>
+        <button (click)="addIntervals()" type="button">New interval</button>
+
+        <div
+          *ngFor="let dateInterval of dateIntervals.controls; let i = index"
+          class="mb-1 element p-1"
+        >
+          <ng-container [formGroupName]="i">
+            <input
+              type="datetime-local"
+              formControlName="enabledDateStart"
+              placeholder="Date start"
+              class="form-control"
+            />
+            <input
+              type="datetime-local"
+              formControlName="enabledDateEnd"
+              placeholder="Date end"
+              class="form-control"
+            />
+
+            <div formArrayName="hours">
+              <h2>Orari</h2>
+              <div
+                *ngFor="let hour of getHours(i).controls; let h = index"
+                class="m-1"
+              >
+                <calendar [formControlName]="h"></calendar>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+    <debug [value]="debugValue"></debug>
+  </div>
+</section>

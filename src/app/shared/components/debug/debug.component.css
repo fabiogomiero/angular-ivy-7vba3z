@@ -1,0 +1,29 @@
+.debug .debug-header {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.debug .debug-header .arrow {
+  transition: transform 0.2s linear;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.debug .debug-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+}
+
+.debug.show .debug-header .arrow {
+  transform: rotate(225deg);
+  -webkit-transform: rotate(225deg);
+}
+
+.debug.show .debug-content {
+  max-height: fit-content;
+  transition: max-height 0.5s ease-in;
+}

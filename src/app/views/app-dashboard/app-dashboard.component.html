@@ -1,0 +1,14 @@
+<div class="dashboard">
+  <p>Choose below to see some magic happen :)</p>
+  <div class="dashboard-grid" [ngStyle]="rowTemplate">
+    <div
+      *ngFor="let item of items$ | async"
+      class="dashboard-item"
+      [routerLink]="item.link"
+      [title]="item.title"
+    >
+      <span class="dashboard-item--title">{{ item.name }}</span>
+      <span class="dashboard-item--description">{{ item.description }}</span>
+    </div>
+  </div>
+</div>

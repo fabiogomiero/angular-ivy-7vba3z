@@ -1,0 +1,19 @@
+<section class="dashboard">
+  <div class="dashboard-header">
+    <h2>Esempi</h2>
+    <back [link]="['/']" label="Dashboard" title="Vai alla homepage"></back>
+  </div>
+  <div class="dashboard-content">
+    <p>
+      In questa sezione puoi trovare una lista di esempi di alcune funzionalità
+      di Angular
+    </p>
+    <ul>
+      <li *ngFor="let example of examplesNav">
+        <a [routerLink]="example.link" [title]="example.title">{{
+          example.name
+        }}</a>
+      </li>
+    </ul>
+  </div>
+</section>
