@@ -56,6 +56,9 @@ export class NgifTemplateVariablesComponent {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  /**
+   * https://gist.github.com/6174/6062387
+   */
   private getString = (numeric: boolean, length: number): string => {
     const allCapsAlpha = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];
     const allLowerAlpha = [...'abcdefghijklmnopqrstuvwxyz'];
