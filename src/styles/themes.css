@@ -64,6 +64,11 @@ input {
   overflow: visible;
 }
 
+form {
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+}
+
 .form-group {
   margin-bottom: 1rem;
 }

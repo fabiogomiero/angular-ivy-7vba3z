@@ -11,4 +11,14 @@ export const navigation: Array<RouteExtended> = [
         (m) => m.ReactiveFormArrayModule
       ),
   },
+  {
+    link: ['../', 'ng-if-template-vars'],
+    name: 'Esempio di ngIf template',
+    title: 'Esempio di ngIf con template e variabili',
+    path: 'ng-if-template-vars',
+    loadChildren: () =>
+      import('./ngif-template-variables/ngif-template-variables.module').then(
+        (m) => m.NgifTemplateVariablesModule
+      ),
+  },
 ];

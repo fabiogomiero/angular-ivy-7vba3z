@@ -1,0 +1,39 @@
+<section class="example">
+  <div class="example-header">
+    <h2>ngIf template with vars</h2>
+    <back
+      label="Esempi"
+      [link]="['../', 'dashboard']"
+      title="Vai lista degli esempi"
+    ></back>
+  </div>
+  <div class="example-content">
+    <p *ngIf="user; else notUser">{{ user.name }} - {{ user.lastName }}</p>
+    <ng-template #notUser><p>Waiting for user...</p></ng-template>
+    <button (click)="initUser()">Init</button>
+
+    <hr />
+
+    <button (click)="initForm()">Get rows</button>
+    <form [formGroup]="form" *ngIf="form" class="mb-1 element p-1">
+      <ng-container *ngFor="let row of rows">
+        <label class="d-flex" *ngIf="!row.editable; else formTmpl">
+          {{ row.value }}
+        </label>
+
+        <ng-template #formTmpl>
+          <div class="form-group">
+            <label [for]="row.name">Riga:</label>
+            <input
+              [id]="row.name"
+              [type]="row.type"
+              [formControlName]="row.name"
+              class="form-control"
+            />
+          </div>
+        </ng-template>
+      </ng-container>
+    </form>
+  </div>
+  <debug [value]="debugValue"></debug>
+</section>
