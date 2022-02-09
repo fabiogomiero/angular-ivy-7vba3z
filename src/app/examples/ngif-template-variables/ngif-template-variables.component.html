@@ -15,7 +15,7 @@
     <hr />
 
     <button (click)="initForm()">Get rows</button>
-    <form [formGroup]="form" *ngIf="form" class="mb-1 element p-1">
+    <form [formGroup]="form" *ngIf="form" class="mb-1 fieldset p-1">
       <ng-container *ngFor="let row of rows">
         <label class="d-flex" *ngIf="!row.editable; else formTmpl">
           {{ row.value }}

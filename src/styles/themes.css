@@ -64,7 +64,7 @@ input {
   overflow: visible;
 }
 
-form {
+.fieldset {
   border: 1px solid #cdcdcd;
   border-radius: 5px;
 }
