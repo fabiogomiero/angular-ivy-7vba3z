@@ -29,10 +29,8 @@ export class NgifTemplateVariablesComponent {
         value: this.getString(isNumber, 12),
       };
       if (editable) {
-        const formControl = new FormControl(row.value, [Validators.required]);
-        row.form = formControl;
         row.type = isNumber ? 'number' : 'text';
-        controls[row.name] = formControl;
+        controls[row.name] = new FormControl(row.value, [Validators.required]);
       }
       this.rows.push(row);
     }
@@ -49,6 +47,7 @@ export class NgifTemplateVariablesComponent {
         editable: r.editable,
         type: r.type,
       })),
+      form: this.form?.value,
     };
   }
 
