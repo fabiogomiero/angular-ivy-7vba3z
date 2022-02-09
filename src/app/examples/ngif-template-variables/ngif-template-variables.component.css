@@ -1,0 +1,7 @@
+label {
+  font-weight: 600;
+}
+
+.readonly label {
+  margin-right: 0.3rem;
+}

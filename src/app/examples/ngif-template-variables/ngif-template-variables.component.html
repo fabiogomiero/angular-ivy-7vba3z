@@ -17,13 +17,14 @@
     <button (click)="initForm()">Get rows</button>
     <form [formGroup]="form" *ngIf="form" class="mb-1 fieldset p-1">
       <ng-container *ngFor="let row of rows">
-        <label class="d-flex" *ngIf="!row.editable; else formTmpl">
-          {{ row.value }}
-        </label>
+        <div class="d-flex readonly" *ngIf="!row.editable; else formTmpl">
+          <label [for]="row.name">{{ row.name }}:</label>
+          <span>{{ row.value }}</span>
+        </div>
 
         <ng-template #formTmpl>
           <div class="form-group">
-            <label [for]="row.name">Riga:</label>
+            <label [for]="row.name">{{ row.name }}:</label>
             <input
               [id]="row.name"
               [type]="row.type"
