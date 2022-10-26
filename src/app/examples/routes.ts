@@ -21,4 +21,14 @@ export const navigation: Array<RouteExtended> = [
         (m) => m.NgifTemplateVariablesModule
       ),
   },
+  {
+    link: ['../', 'reactive-form-tests'],
+    name: "Un po' di test con reactive form",
+    title: 'Una collezione di test con reactive-form',
+    path: 'reactive-form-tests',
+    loadChildren: () =>
+      import('./reactive-form-test/reactive-form-test.module').then(
+        (m) => m.ReactiveFormTestModule
+      ),
+  },
 ];
