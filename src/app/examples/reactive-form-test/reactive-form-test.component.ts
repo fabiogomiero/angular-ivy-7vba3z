@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { pairwise, Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 import { upperFirst } from '../../shared/utils';
 
 @Component({
@@ -10,13 +11,14 @@ import { upperFirst } from '../../shared/utils';
 })
 export class ReactiveFormTestComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
+  private addressFormControl = new FormControl(null);
+
   public form: FormGroup;
 
   public emitEvent = true;
   public onlySelf = false;
 
   public ngOnInit(): void {
-    //this.buildConfigForm();
     this.buildMainForm();
   }
 
@@ -34,22 +36,33 @@ export class ReactiveFormTestComponent implements OnInit, OnDestroy {
 
   private buildMainForm(): void {
     this.form = new FormGroup({
-      address: new FormControl(null),
+      address: this.addressFormControl,
       city: new FormControl(null),
     });
 
     this.subscriptions.add(
-      this.form.valueChanges.subscribe((_) =>
-        console.log(`Triggered form valueChanges`)
-      )
+      this.addressFormControl.valueChanges
+        .pipe(distinctUntilChanged())
+        .subscribe(() => {
+          console.log(`Componente valueChanges`);
+          this.addressFormControl.setValue(`Address: ${Date.now()}`);
+        })
     );
 
     this.subscriptions.add(
-      this.form
-        .get('address')
-        .valueChanges.subscribe((_) =>
-          console.log(`Triggered "address" control valueChanges`)
-        )
+      this.form.valueChanges
+        .pipe(pairwise())
+        .subscribe(([prev, curr]: [any, any]) => {
+          console.log(`Triggered form valueChanges`);
+          console.log(`----Prev:`, prev);
+          console.log(`----Curr:`, curr);
+        })
+    );
+
+    this.subscriptions.add(
+      this.form.get('address').valueChanges.subscribe((_) => {
+        console.log(`Triggered "address" control valueChanges`);
+      })
     );
   }
 
